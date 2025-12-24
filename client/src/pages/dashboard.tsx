@@ -1,6 +1,9 @@
 import { DashboardStats } from "@/components/dashboard-stats";
 import { ActivityFeed } from "@/components/activity-feed";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { PageHeader } from "@/components/PageHeader";
+import { Button } from "@/components/ui/button";
+import { Plus } from "lucide-react";
 import { Bar } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -96,10 +99,20 @@ const chartOptions = {
 export default function Dashboard() {
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="text-2xl font-semibold">Dashboard</h1>
-        <p className="text-sm text-muted-foreground">Overview of your projects and team activity</p>
-      </div>
+      <PageHeader
+        title="Dashboard"
+        description="Overview of your projects and team activity"
+        breadcrumbs={[
+          { label: "Home", href: "/" },
+          { label: "Dashboard" }
+        ]}
+        action={
+          <Button className="bg-gradient-to-r from-[hsl(var(--sf-gold))] to-[hsl(var(--sf-gold-bright))] text-[hsl(var(--sf-black))] hover:shadow-lg">
+            <Plus className="mr-2 h-4 w-4" />
+            New Project
+          </Button>
+        }
+      />
 
       <DashboardStats stats={mockStats} trends={mockTrends} />
 
